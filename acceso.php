@@ -12,6 +12,7 @@ if($_POST['nombre']!="" && $_POST['clave']!=""){
         // Si las credenciales son válidas, se establece la sesión
         $_SESSION['nombre'] = $_POST['nombre'];
         $_SESSION['clave'] = $_POST['clave'];
+        $_SESSION['usuario_id'] = $miUsuario->getId(); // Guardar el ID del usuario en la sesión
 
         // Navegar hacia el panel principal
         header("Location: listar.php");

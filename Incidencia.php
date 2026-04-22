@@ -92,5 +92,31 @@ class Incidencia {
 
         return $resultado; // true si se insertó correctamente
     }
+
+    /**
+	 * Obtener todas las incidencias por el Id de un usuario.
+     * Retorna un array de objetos Incidencia.
+     * Lanza Exception si ocurre un error de base de datos.
+	 */
+    public function obtenerPorUsuarioId($usuario_id){
+         $sql = "SELECT * FROM incidencia WHERE usuario_id = ?";
+
+        try {
+            $cnn = new ConexionBDD();
+            $stmt = $cnn->getConexion()->prepare($sql);
+            $stmt->execute([$usuario_id]);
+            
+            $filas = $stmt->fetchAll();
+            $incidencias = [];
+            foreach ($filas as $fila) {
+                $incidencia = new Incidencia($fila['nombre']);
+                $incidencia->setId($fila['id']);
+                $incidencias[] = $incidencia;
+            }
+            return $incidencias;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener incidencias: " . $e->getMessage());
+        }
+    }
 }
 ?>
