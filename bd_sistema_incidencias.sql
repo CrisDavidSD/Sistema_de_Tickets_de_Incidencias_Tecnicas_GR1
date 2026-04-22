@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2026 a las 01:11:42
+-- Tiempo de generación: 22-04-2026 a las 03:31:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_sistema_incidencias`
 --
+CREATE DATABASE IF NOT EXISTS `bd_sistema_incidencias` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bd_sistema_incidencias`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `incidencia`
 --
 
+DROP TABLE IF EXISTS `incidencia`;
 CREATE TABLE `incidencia` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
@@ -41,11 +44,20 @@ CREATE TABLE `incidencia` (
 -- Estructura de tabla para la tabla `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `clave` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `usuario`, `clave`) VALUES
+(1, 'Chris', '123'),
+(2, 'Gabo', '123456');
 
 --
 -- Índices para tablas volcadas
@@ -79,7 +91,7 @@ ALTER TABLE `incidencia`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

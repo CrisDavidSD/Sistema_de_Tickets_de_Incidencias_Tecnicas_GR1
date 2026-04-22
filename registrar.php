@@ -95,5 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
          <a href="listar.php">Volver al listado</a>
+         <br>
+         <a href="cerrarsesion.php">Cerrar Sesión</a>
     </body>
 </html>

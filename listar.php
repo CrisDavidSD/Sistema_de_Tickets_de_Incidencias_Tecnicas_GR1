@@ -1,7 +1,7 @@
 <?php
 session_start();
-if( !isset($_SESSION['nombre']) || !isset($_SESSION["clave"])  ){
-    header("Location:index.php");
+if( !isset($_SESSION['nombre']) && !isset($_SESSION["clave"])  ){
+    header("Location: index.php");
 }
 require_once 'ConexionBDD.php';
 require_once 'Incidencia.php';
@@ -27,10 +27,12 @@ $incidencias = $incidencia->obtenerPorUsuarioId($usuario_id);
     <h3>Lista de incidencias</h3>
     <ul>
         <?php foreach ($incidencias as $item): ?>
-            <li><?php echo $item->getId(); ?> - <a href="detalle.php">
+            <li><?php echo $item->getId(); ?> - <a href="detalle.php?id=<?php echo $item->getId(); ?>">
                 <?php echo $item->getNombre(); ?></a></li>
         <?php endforeach; ?>
     </ul>
     <a href="registrar.php">Registrar nueva incidencia</a>
+    <br>
+    <a href="cerrarsesion.php">Cerrar Sesión</a>
 </body>
 </html>

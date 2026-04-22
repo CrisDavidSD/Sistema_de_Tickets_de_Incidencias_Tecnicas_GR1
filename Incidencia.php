@@ -118,5 +118,34 @@ class Incidencia {
             throw new Exception("Error al obtener incidencias: " . $e->getMessage());
         }
     }
+
+    /**
+     * Obtener una incidencia por su ID.
+     * Retorna un objeto Incidencia o null si no se encuentra.
+     */
+    public function obtenerPorId($id) {
+        $sql = "SELECT * FROM incidencia WHERE id = ?";
+
+        try {
+            $cnn = new ConexionBDD();
+            $stmt = $cnn->getConexion()->prepare($sql);
+            $stmt->execute([$id]);
+
+            $fila = $stmt->fetch();
+            if ($fila) {
+                $incidencia = new Incidencia(
+                    $fila['nombre'],
+                    $fila['descripcion'],
+                    $fila['prioridad'],
+                    $fila['usuario_id']
+                );
+                $incidencia->setId($fila['id']);
+                return $incidencia;
+            }
+            return null;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener la incidencia: " . $e->getMessage());
+        }
+    }
 }
 ?>
