@@ -23,6 +23,7 @@
     <hr>
     <p>La incidencia ha sido creada exitosamente.</p>
     <p>Puede volver a <a href="listar.php">la lista de incidencias</a> para crear otra incidencia o revisar las existentes.</p>
-
+    <br>
+    <a href="cerrarsesion.php">Cerrar Sesión</a>    
 </body>
 </html>
